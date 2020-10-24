@@ -5,6 +5,7 @@ const Home= function(props){
 return(
     <View>
         <Text>Home page</Text>
+        
     </View>
 )
 }
@@ -12,3 +13,5 @@ return(
 const styles= StyleSheet.create({
     
 })
+
+export default Home

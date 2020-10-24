@@ -48,9 +48,10 @@ const Login = (props) => {
         </View>
 
         <View style={styles.inputContainer}>
-          <View style={{flex: 0.5, justifyContent: 'space-between'}}>
+          <View style={{flex: 1, justifyContent: 'space-evenly'}}>
             <View style={{}}>
               <TextInput
+              
                 placeholder="Username"
                 style={styles.input}
                 onChangeText={(value) => setEmail(value)}
@@ -81,7 +82,7 @@ const Login = (props) => {
             }}>
             <View style={styles.button}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate('Signup')}>
+                onPress={() => props.navigation.navigate('Home')}>
                 <Text style={{textAlign: 'center', color: 'white'}}>LOGIN</Text>
               </TouchableOpacity>
             </View>
@@ -174,16 +175,17 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: 350,
-    padding: 10,
+    padding: 20,
   
   },
   input: {
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderLeftWidth: 1,
-    borderRightWidth: 1,
-    borderRadius: 4,
-    borderColor: 'grey',
+    padding:10,
+    // borderTopWidth: 1,
+    borderBottomWidth: 2,
+    // borderLeftWidth: 1,
+    // borderRightWidth: 1,
+    // borderRadius: 4,
+    // borderColor: 'grey',
   },
   logo: {
     width: 150,
