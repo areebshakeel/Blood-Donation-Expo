@@ -41,8 +41,7 @@ const Signup = (props) => {
         console.log('try')
         alert('sign up hoagaya')
         props.navigation.navigate('Login')
-        // props.setLog(true)
-        // props.setSign(false)
+       
 
       }
       catch(e){
