@@ -1,6 +1,7 @@
 
 import Logo from '../../assets/logo.png' ;
 import React, {useState} from 'react';
+import { AsyncStorage } from 'react-native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,10 +26,32 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Signup = (props) => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullName,setName]=useState('')
+  const [lastName,setLast] = useState('')
   console.log(password);
   console.log(email);
+
+  const register = async ()=>{
+    const obj={fullName,email,password}
+    console.log(obj)
+    try {
+        await AsyncStorage.setItem('userInfo', JSON.stringify(obj));
+        console.log('try')
+        alert('sign up hoagaya')
+        props.navigation.navigate('Login')
+        // props.setLog(true)
+        // props.setSign(false)
+
+      }
+      catch(e){
+
+            console.log(e)
+      }
+
+  
+}
 
   return (
     <ScrollView>
@@ -54,14 +77,14 @@ const Signup = (props) => {
               <TextInput
                 placeholder="First name"
                 style={styles.input}
-                onChangeText={(value) => setEmail(value)}
+                onChangeText={(value) => setName(value)}
               />
             </View>
             <View style={{}}>
               <TextInput
                 placeholder="Last name"
                 style={styles.input}
-                onChangeText={(value) => setEmail(value)}
+                onChangeText={(value) => setLast(value)}
               />
             </View>
             <View style={{}}>
@@ -96,7 +119,7 @@ const Signup = (props) => {
             }}>
             <View style={styles.button}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate('Login')}>
+                onPress={register}>
                 <Text style={{textAlign: 'center', color: 'white'}}>
                   SIGN UP
                 </Text>

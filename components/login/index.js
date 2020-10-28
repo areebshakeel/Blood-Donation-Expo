@@ -1,5 +1,6 @@
 import Logo from '../../assets/logo.png';
 import React, {useState} from 'react';
+import { AsyncStorage } from 'react-native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -23,11 +24,38 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
 const Login = (props) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   console.log(password);
   console.log(email);
+
+
+  const login =async ()=>{
+    const userObj = {email,password}
+     try{
+      const value =  await AsyncStorage.getItem('userInfo')
+      const data = JSON.parse(value)
+      if(userObj.email===data.email && userObj.password===data.password){
+          
+
+                 
+        alert('hogaya log in')
+        props.navigation.navigate('Home')
+      
+        
+       
+         
+
+
+      }
+    
+   
+     } catch(error){
+        alert(error.message)
+     }
+  }
 
   return (
     <ScrollView>
@@ -82,7 +110,7 @@ const Login = (props) => {
             }}>
             <View style={styles.button}>
               <TouchableOpacity
-                onPress={() => props.navigation.navigate('Home')}>
+                onPress={login}>
                 <Text style={{textAlign: 'center', color: 'white'}}>LOGIN</Text>
               </TouchableOpacity>
             </View>
