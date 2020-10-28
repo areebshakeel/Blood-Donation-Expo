@@ -88,6 +88,8 @@ const Signup = (props) => {
               <Text>I Agree to the terms and conditions</Text>
             </View>
           </View>
+          <View><Text onPress={() => props.navigation.navigate('Login')} style={{textDecorationLine:"underline", color:"blue"}}>Already An Account?</Text></View>
+
           <View
             style={{
               flex: 1,
@@ -202,11 +204,11 @@ const styles = StyleSheet.create({
   input: {
     padding:10,
     // borderTopWidth: 1,
-    borderBottomWidth: 2,
+    borderBottomWidth: 1,
     // borderLeftWidth: 1,
     // borderRightWidth: 1,
     // borderRadius: 4,
-    // borderColor: 'grey',
+    borderColor: 'grey',
   },
   logo: {
     width: 150,
