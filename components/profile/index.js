@@ -1,27 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
-  TextInput,
-  Button,
   Image,
-  TouchableOpacity,
+  LogBox
+  
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import * as Facebook from 'expo-facebook'
 import firebase from '../config'
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import { YellowBox } from 'react-native';
+import _ from 'lodash';
+
+LogBox.ignoreLogs(['Setting a timer']);
+const _console = _.clone(console);
+console.warn = message => {
+  if (message.indexOf('Setting a timer') <= -1) {
+    _console.warn(message);
+  }
+};
+
 
 const profile = function(){
 const [data,setData]=useState({})
@@ -41,10 +40,15 @@ const [data,setData]=useState({})
         setData(...arry)
         })
     }
-    console.log('state wala',data)
+    console.log('state wala Url ',data.url)
+
     return(
         <View>
             <Text>Name:{data.name}</Text>
+            <Image style={{height:400, borderBottomWidth:2,borderColor:'black'}} 
+            source={{uri:'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2370006016479121&height=200&width=200&ext=1607290562&hash=AeR6YfyuHnFRvvw39Kk'}}>
+
+            </Image>
         </View>
     )
     
