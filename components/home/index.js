@@ -13,7 +13,7 @@ const Home= function(props){
     },
     ,{
         color:'red',
-        text:'pakistam'
+        text:'pakistan'
     },
     {
         color:'white',

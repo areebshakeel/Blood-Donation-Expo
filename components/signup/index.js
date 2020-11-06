@@ -14,6 +14,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
+import * as Facebook from 'expo-facebook'
 
 import {
   Header,
@@ -23,12 +24,54 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import firebase from '../config'
 
 const Signup = (props) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   console.log(password);
   console.log(email);
+  const loginWithFaceBook= async()=>{
+    try {
+      await Facebook.initializeAsync({
+        appId: '653743288669029',
+      });
+      const {
+        type,
+        token,
+        expirationDate,
+        permissions,
+        declinedPermissions,
+      } = await Facebook.logInWithReadPermissionsAsync({
+        permissions: ['public_profile'],
+      });
+      if (type === 'success') {
+        // Get the user's name using Facebook's Graph API
+        const response = await fetch(`https://graph.facebook.com/me?access_token=${token}&fields=id,name,birthday,picture.type(large)`);
+         let userData = await response.json()
+
+         const {
+          id,
+          name,
+          picture: {
+            data: { url },
+          },
+        } = userData;
+        firebase.firestore().collection('users').add({id, name,url}).then(res=>{
+          alert('Data Sent')
+        }).catch((e)=>{
+          alert(e.message)
+        })
+
+         props.navigation.navigate('Home')
+        // alert('Logged in!', `Hi ${(await response.json()).name}!`);
+      } else {
+        // type === 'cancel'
+      }
+    } catch ({ message }) {
+      alert(`Facebook Login Error: ${message}`);
+    }
+  }
 
   return (
     <ScrollView>
@@ -113,6 +156,7 @@ const Signup = (props) => {
               }}>
               <View style={styles.facebook}>
                 <TouchableOpacity
+                onPress={loginWithFaceBook}
                   style={{
                     flex: 1,
                     flexDirection: 'row',
@@ -123,9 +167,9 @@ const Signup = (props) => {
                     name="facebook"
                     color="white"
                     size={30}
-                    onPress={() => alert('Login with Facebook')}></Icon>
+                    ></Icon>
                   <Text style={{textAlign: 'center', color: 'white'}}>
-                    Facebook
+                    facebook
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -188,7 +232,7 @@ const styles = StyleSheet.create({
     // flex:1,
     padding: 15,
     borderRadius: 30,
-    backgroundColor: 'red',
+    backgroundColor: '#C72323',
     marginTop: 20,
   },
   inputContainer: {

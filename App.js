@@ -12,11 +12,23 @@ import {
 import Signup from "./components/signup";
 import Login from "./components/login";
 import Home from "./components/home";
+import Profile from './components/profile'
+import Dashboard from './components/appComponents/DashboardCards'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/AntDesign'
+
 
 const Stack = createStackNavigator();
-export default function App() {
+const Drawer= createDrawerNavigator()
+
+
+
+ export default function App () {
+const toggle=()=>{
+  console.log()
+}
   return (
     <NavigationContainer>
       <Stack.Navigator >
@@ -58,13 +70,19 @@ export default function App() {
             },
             title: "Dashboard",
             headerTitleAlign: "center",
+            headerLeft:()=>(
+              <Icon name='bars' size={25} onPress={toggle}/> 
+            )
+            
           }}
           name="Home"
-          component={Home}
+          component={Dash}
         
         />
       </Stack.Navigator>
     </NavigationContainer>
+
+//    
   );
 }
 
@@ -79,3 +97,17 @@ const styles = StyleSheet.create({
     color: "green",
   },
 });
+
+ function Dash(){
+    return(
+        <Drawer.Navigator initialRouteName='Home'>
+          <Drawer.Screen name='Home' component={Home}  />
+          <Drawer.Screen name='Signup' component={Signup}  />
+          <Drawer.Screen name='Profile' component={Profile}  />
+          
+
+          {/* <Drawer.Screen name='App' component={App} /> */}
+        </Drawer.Navigator>
+    
+    )
+  }
