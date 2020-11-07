@@ -43,12 +43,12 @@ const [data,setData]=useState({})
     console.log('state wala Url ',data.url)
 
     return(
-        <View>
-            <Text>Name:{data.name}</Text>
-            <Image style={{height:400, borderBottomWidth:2,borderColor:'black'}} 
-            source={{uri:'https://platform-lookaside.fbsbx.com/platform/profilepic/?asid=2370006016479121&height=200&width=200&ext=1607290562&hash=AeR6YfyuHnFRvvw39Kk'}}>
+        <View >
+            <Image style={{width:200,height:200, borderBottomWidth:2,borderColor:'black', borderRadius:100}} 
+            source={{uri:`${data.url}`}}>
 
             </Image>
+            <Text>Name:{data.name}</Text>
         </View>
     )
     
