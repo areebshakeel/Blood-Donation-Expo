@@ -18,7 +18,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/AntDesign'
-
+import Personal from './components/profile/personalDetails'
 
 const Stack = createStackNavigator();
 const Drawer= createDrawerNavigator()
@@ -35,7 +35,7 @@ const toggle=()=>{
         <Stack.Screen
           options={{
             headerStyle: {
-              backgroundColor: "red",
+              backgroundColor: "#C72323",
             },
             headerTitleStyle: {
               color: "white",
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
           <Drawer.Screen name='Home' component={Home}  />
           <Drawer.Screen name='Signup' component={Signup}  />
           <Drawer.Screen name='Profile' component={Profile}  />
+          <Drawer.Screen name='Personal' component={Personal}  />
           
 
           {/* <Drawer.Screen name='App' component={App} /> */}

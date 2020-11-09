@@ -43,12 +43,12 @@ const [data,setData]=useState({})
     console.log('state wala Url ',data.url)
 
     return(
-        <View >
+        <View style={{flex:0.5, justifyContent:'center', alignItems:'center'}}>
             <Image style={{width:200,height:200, borderBottomWidth:2,borderColor:'black', borderRadius:100}} 
             source={{uri:`${data.url}`}}>
 
             </Image>
-            <Text>Name:{data.name}</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color:'#3b5998'}} >{data.name}</Text>
         </View>
     )
     
