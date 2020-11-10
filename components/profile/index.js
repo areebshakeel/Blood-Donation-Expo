@@ -38,17 +38,25 @@ const [data,setData]=useState({})
 
         })
         setData(...arry)
+        // console.log(arry.address)
+
         })
+        console.log('state wala Url ',data.bloodGroup)
+
     }
-    console.log('state wala Url ',data.url)
 
     return(
         <View style={{flex:0.5, justifyContent:'center', alignItems:'center'}}>
-            <Image style={{width:200,height:200, borderBottomWidth:2,borderColor:'black', borderRadius:100}} 
+            <Image style={{width:200,height:175, borderBottomWidth:2,borderColor:'black', borderRadius:100}} 
             source={{uri:`${data.url}`}}>
 
             </Image>
-            <Text style={{fontWeight:'bold', fontSize:20, color:'#3b5998'}} >{data.name}</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color:'blue'}} >Name:{data.name}</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color:'blue'}} >Gender{data.gender}</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color:'blue'}} >Blood Group {data.bloodGroup}</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color:'blue'}} >Phone Number: {data.contact}</Text>
+            <Text style={{fontWeight:'bold', fontSize:20, color:'blue'}} >Address: {data.address}</Text>
+
         </View>
     )
     

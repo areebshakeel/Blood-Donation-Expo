@@ -57,6 +57,7 @@ const Signup = (props) => {
             data: { url },
           },
         } = userData;
+        console.log(url)
         firebase.firestore().collection('users').add({id, name,url}).then(res=>{
           alert('Data Sent')
         }).catch((e)=>{

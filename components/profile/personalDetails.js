@@ -2,18 +2,44 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import { TextInput, TouchableOpacity } from "react-native-gesture-handler";
+import * as firebase from 'firebase'
 
 const personalDetails = function () {
-  const [bloodGroup, setBloodGroup] = useState();
-  const [gender, setGender] = useState();
-  const [age, setAge] = useState();
-  const [contact, setContact] = useState();
-  const [address, setAddress] = useState();
+  const [bloodGroup, setBloodGroup] = useState('');
+  const [gender, setGender] = useState('');
+  const [age, setAge] = useState('');
+  const [contact, setContact] = useState('');
+  const [address, setAddress] = useState('');
   console.log(bloodGroup);
   console.log(gender);
   console.log(age);
   console.log(contact);
   console.log(address);
+
+  const sendPersonalDetails= function(){
+     
+      let personalData={
+        bloodGroup,
+        gender,
+        age,
+        contact,
+        address
+      }
+    //   const {
+    //       bloodGroup,
+    //       gender,
+    //       age,
+    //       contact,
+    //       address
+    //   }=personalData
+
+      firebase.firestore().collection('users').add(personalData).then(res=>{
+        //   console.log(personalData)
+          alert('personal Data sent')
+      }).catch((e)=>{
+          alert(e.message)
+      })
+  }
   return (
     <ScrollView>
       <Text style={{ fontSize: 30, fontWeight: "bold", color: "#C72323" }}>
@@ -68,9 +94,22 @@ const personalDetails = function () {
         />
       </View>
 
-      <View>
-        <TouchableOpacity>
-          <Text>Save </Text>
+      <View
+      
+        style={{
+          marginLeft: 5,
+          width: 350,
+          backgroundColor: "#C72323",
+          flex: 1,
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          borderRadius: 15,
+          padding: 12,
+        }}
+      >
+        <TouchableOpacity onPress={sendPersonalDetails}>
+          <Text style={{ color: "white" }}>Save</Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
